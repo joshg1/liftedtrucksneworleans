@@ -198,3 +198,17 @@ p{margin:0 0 1em}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .truck-art .ta-seam{fill:rgba(0,0,0,.35)}
 [id]{scroll-margin-top:96px}
+/* photos */
+.photo{margin:0;position:relative}
+.photo img{display:block;width:100%;height:auto}
+.photo figcaption{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;letter-spacing:.04em;padding:3px 8px;border-radius:4px}
+.tc-art.has-photo{padding:0;background:#111}
+.tc-art.has-photo .photo img{aspect-ratio:16/9;object-fit:cover;height:auto}
+.page-photo{margin:20px 0;border-radius:var(--r);overflow:hidden}
+.page-photo img{aspect-ratio:16/9;object-fit:cover}
+.hero{position:relative;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:35% 50%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,13,15,.92) 0%,rgba(13,13,15,.72) 45%,rgba(13,13,15,.35) 100%),linear-gradient(0deg,rgba(13,13,15,.7) 0%,transparent 40%)}
+.hero{padding:72px 0 88px}
+@media (max-width:980px){.hero::after{background:rgba(13,13,15,.74)}.hero-bg img{object-position:62% 60%}}

@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { site } from "./src/site.config.mjs";
-import { trucks, areas, generalFaqs, steps } from "./src/content.mjs";
+import { trucks, areas, generalFaqs, steps, photos } from "./src/content.mjs";
 
 const OUT = "dist";
 rmSync(OUT, { recursive: true, force: true });
@@ -84,6 +84,15 @@ const truckArt = (label = "") => `
   <rect class="ta-light" x="362" y="80" width="10" height="9" rx="2"/><rect class="ta-seam" x="164" y="66" width="4" height="48"/>
 </svg>`;
 
+// Responsive photo. `eager` for above-the-fold images.
+function pic(key, { sizes = "(max-width: 620px) 100vw, 400px", eager = false, cls = "", note = true } = {}) {
+  const p = photos[key];
+  if (!p) return "";
+  const base = `/img/trucks/${p.file}`;
+  const h = Math.round(800 / p.ratio);
+  return `<figure class="photo ${cls}"><img src="${base}-800.webp" srcset="${base}-800.webp 800w, ${base}-1600.webp ${p.big}w" sizes="${sizes}" width="800" height="${h}" alt="${esc(p.alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${note ? '<figcaption>Example photo</figcaption>' : ""}</figure>`;
+}
+
 const crumbsHtml = (crumbs) =>
   crumbs.length < 2 ? "" :
   `<nav class="crumbs" aria-label="Breadcrumb"><ol>${crumbs
@@ -143,7 +152,7 @@ const answerBox = (text) => `<div class="answer"><p class="answer-label">Quick a
 
 const truckCard = (t) => `
 <a class="card truck-card" href="/trucks/${t.slug}/">
-  <div class="tc-art">${truckArt(t.name)}<span class="tag">${esc(t.tag)}</span></div>
+  <div class="tc-art${t.photo ? " has-photo" : ""}">${t.photo ? pic(t.photo, { note: false }) : truckArt(t.name)}<span class="tag">${esc(t.tag)}</span></div>
   <div class="tc-body">
     <h3>${esc(t.name)}</h3>
     <p class="tc-price">From the ${esc(t.priceFrom)}<span>*</span></p>
@@ -203,7 +212,7 @@ const footer = () => `
 </footer>
 <a class="mobile-call" href="${tel}">Call ${site.phone}</a>`;
 
-function layout({ path, title, desc, body, schema = [], crumbs = [], noindex = false, ogType = "website" }) {
+function layout({ path, title, desc, body, schema = [], crumbs = [], noindex = false, ogType = "website", preload = "" }) {
   const withBrand = `${title} | ${site.name}`;
   const fullTitle = title.includes(site.name) || withBrand.length > 65 ? title : withBrand;
   const graph = { "@context": "https://schema.org", "@graph": [orgSchema, websiteSchema,
@@ -231,7 +240,7 @@ function layout({ path, title, desc, body, schema = [], crumbs = [], noindex = f
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/logo.png">
 <link rel="preload" href="/fonts/oswald-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+${preload}<link rel="stylesheet" href="/styles.css">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary">
 <script type="application/ld+json">${JSON.stringify(graph)}</script>
 </head>
@@ -254,6 +263,7 @@ ${footer()}
 // Home
 layout({
   path: "/",
+  preload: `<link rel="preload" as="image" href="/img/trucks/${photos.hero.file}-800.webp" imagesrcset="/img/trucks/${photos.hero.file}-800.webp 800w, /img/trucks/${photos.hero.file}-1600.webp ${photos.hero.big}w" imagesizes="100vw" fetchpriority="high">\n`,
   title: "Lifted Trucks for Sale in New Orleans | Black Widow & Custom Builds",
   desc: "Lifted trucks for sale in New Orleans: Black Widow F-150, F-250, F-350, Raptor SCA, Ram and Silverado from local dealers. Free search, financing for all credit.",
   schema: [
@@ -263,6 +273,7 @@ layout({
   ],
   body: `
 <section class="hero">
+  ${pic("hero", { sizes: "100vw", eager: true, cls: "hero-bg", note: false })}
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">${esc(site.tagline)}</p>
@@ -270,7 +281,6 @@ layout({
       <p class="lead">Black Widow, SCA Performance and custom-lifted Ford, Ram and Chevy trucks from local dealers. Tell us what you want and we'll find it, free.</p>
       <ul class="badges"><li>New &amp; pre-owned</li><li>All credit situations</li><li>$0 down on qualifying trucks</li><li>Same-day answers</li></ul>
       <div class="hero-ctas"><a class="btn btn-red" href="#lead">Check Available Trucks</a><a class="btn btn-ghost" href="${tel}">Call ${site.phone}</a></div>
-      <div class="hero-art">${truckArt("Lifted Black Widow-style truck")}</div>
     </div>
     ${leadForm({ id: "lead" })}
   </div>
@@ -375,6 +385,7 @@ for (const t of trucks) {
     <h1 class="h-xl">${esc(t.name)} for sale in New Orleans</h1>
     ${answerBox(t.answer)}
     <p><strong>Best for:</strong> ${esc(t.bestFor)}</p>
+    ${t.pagePhoto ? pic(t.pagePhoto, { sizes: "(max-width: 980px) 100vw, 560px", cls: "page-photo" }) : ""}
   </div>
   ${leadForm({ id: "lead", heading: `Check ${t.short} availability`, preset: t.name })}
 </div></section>
@@ -465,6 +476,7 @@ for (const a of areas) {
     <p class="eyebrow">${esc(a.parish)}</p>
     <h1 class="h-xl">${esc(a.title.replace(/ \|.*$/, ""))}</h1>
     ${answerBox(a.answer)}
+    ${a.photo ? pic(a.photo, { sizes: "(max-width: 980px) 100vw, 560px", cls: "page-photo" }) : ""}
   </div>
   ${leadForm({ id: "lead", heading: `Find a lifted truck in ${label}`, area: label })}
 </div></section>

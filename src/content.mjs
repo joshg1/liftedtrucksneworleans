@@ -3,9 +3,23 @@
 // answer, then supporting detail. That helps Google (SEO), featured
 // snippets / voice answers (AEO) and AI assistants (GEO).
 
+// Photos live in public/img/trucks/<file>-800.webp and -1600.webp.
+// `big` is the real pixel width of the large file. These are example photos
+// of each model, not specific trucks in stock.
+export const photos = {
+  hero: { file: "hero-black-widow-f150", big: 1540, ratio: 1540 / 783, alt: "Gray Ford F-150 Black Widow lifted truck with LED lighting, parked at night" },
+  f150Red: { file: "f150-black-widow-red", big: 1600, ratio: 1922 / 1079, alt: "Red Ford F-150 Black Widow lifted truck with black wheels and all-terrain tires" },
+  f150White: { file: "f150-black-widow-white", big: 1600, ratio: 1920 / 1081, alt: "White Ford F-150 FX4 Black Widow lifted truck parked on gravel" },
+  f150Boat: { file: "f150-black-widow-towing-boat", big: 1600, ratio: 1918 / 1078, alt: "Gray Ford F-150 Black Widow lifted truck towing a bass boat" },
+  usedRed: { file: "used-f150-black-widow-red", big: 1600, ratio: 1608 / 905, alt: "Pre-owned red Ford F-150 Black Widow lifted truck on grass" },
+  ramWhite: { file: "ram-1500-black-widow-white", big: 1169, ratio: 1169 / 658, alt: "White Ram 1500 Black Widow lifted truck with LED light bar" },
+  ramBlack: { file: "ram-1500-black-widow-black", big: 1600, ratio: 1920 / 1080, alt: "Black Ram 1500 Black Widow lifted truck with SCA suspension and mud-terrain tires" }
+};
+
 export const trucks = [
   {
     slug: "ford-f-150-black-widow",
+    photo: "f150Red", pagePhoto: "f150White",
     name: "Ford F-150 Black Widow",
     short: "F-150 Black Widow",
     make: "Ford",
@@ -104,6 +118,7 @@ export const trucks = [
   },
   {
     slug: "lifted-ram-trucks",
+    photo: "ramBlack", pagePhoto: "ramWhite",
     name: "Lifted Ram 1500 & 2500",
     short: "Lifted Ram",
     make: "Ram",
@@ -152,6 +167,7 @@ export const trucks = [
   },
   {
     slug: "used-lifted-trucks",
+    photo: "usedRed", pagePhoto: "usedRed",
     name: "Used & Pre-Owned Lifted Trucks",
     short: "Used Lifted Trucks",
     make: "Multiple",
@@ -179,6 +195,7 @@ export const trucks = [
 export const areas = [
   {
     slug: "new-orleans",
+    photo: "f150White",
     name: "New Orleans",
     parish: "Orleans Parish",
     title: "Lifted Trucks for Sale in New Orleans, LA",
@@ -194,6 +211,7 @@ export const areas = [
   },
   {
     slug: "metairie",
+    photo: "f150Red",
     name: "Metairie",
     parish: "Jefferson Parish",
     title: "Lifted Trucks for Sale in Metairie, LA",
@@ -224,6 +242,7 @@ export const areas = [
   },
   {
     slug: "westbank",
+    photo: "f150Boat",
     name: "the Westbank",
     displayName: "Westbank",
     parish: "Jefferson & Plaquemines Parishes",
@@ -240,6 +259,7 @@ export const areas = [
   },
   {
     slug: "chalmette",
+    photo: "f150Boat",
     name: "Chalmette",
     parish: "St. Bernard Parish",
     title: "Lifted Trucks for Sale in Chalmette & St. Bernard Parish",
@@ -270,6 +290,7 @@ export const areas = [
   },
   {
     slug: "mandeville-covington",
+    photo: "ramWhite",
     name: "Mandeville & Covington",
     parish: "St. Tammany Parish",
     title: "Lifted Trucks for Sale in Mandeville & Covington, LA",
