@@ -1,5 +1,6 @@
 // Static site generator: `npm run build` writes the finished site to ./dist
-import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { site } from "./src/site.config.mjs";
 import { trucks, areas, generalFaqs, steps, photos } from "./src/content.mjs";
@@ -14,6 +15,10 @@ for (const w of ["600", "700"]) {
   const f = `oswald-latin-${w}-normal.woff2`;
   if (existsSync(join(fontDir, f))) cpSync(join(fontDir, f), join(OUT, "fonts", f));
 }
+
+// Version stamps so browsers always fetch the latest CSS/JS after a deploy.
+const ver = (f) => createHash("md5").update(readFileSync(join("public", f))).digest("hex").slice(0, 8);
+const CSS_V = ver("styles.css"), JS_V = ver("app.js");
 
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -240,7 +245,7 @@ function layout({ path, title, desc, body, schema = [], crumbs = [], noindex = f
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/logo.png">
 <link rel="preload" href="/fonts/oswald-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-${preload}<link rel="stylesheet" href="/styles.css">
+${preload}<link rel="stylesheet" href="/styles.css?v=${CSS_V}">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary">
 <script type="application/ld+json">${JSON.stringify(graph)}</script>
 </head>
@@ -251,7 +256,7 @@ ${crumbs.length > 1 ? `<div class="wrap">${crumbsHtml(crumbs)}</div>` : ""}
 ${body}
 </main>
 ${footer()}
-<script src="/app.js" defer></script>
+<script src="/app.js?v=${JS_V}" defer></script>
 </body>
 </html>`;
   const file = path.endsWith("/") ? join(OUT, path, "index.html") : join(OUT, path);
