@@ -268,7 +268,7 @@ ${footer()}
 // Home
 layout({
   path: "/",
-  preload: `<link rel="preload" as="image" href="/img/trucks/${photos.hero.file}-800.webp" imagesrcset="/img/trucks/${photos.hero.file}-800.webp 800w, /img/trucks/${photos.hero.file}-1600.webp ${photos.hero.big}w" imagesizes="100vw" fetchpriority="high">\n`,
+  preload: `<link rel="preload" as="image" href="/img/hero-poster.webp" fetchpriority="high">\n`,
   title: "Lifted Trucks for Sale in New Orleans | Black Widow & Custom Builds",
   desc: "Lifted trucks for sale in New Orleans: Black Widow F-150, F-250, F-350, Raptor SCA, Ram and Silverado from local dealers. Free search, financing for all credit.",
   schema: [
@@ -278,7 +278,10 @@ layout({
   ],
   body: `
 <section class="hero">
-  ${pic("hero", { sizes: "100vw", eager: true, cls: "hero-bg", note: false })}
+  <div class="hero-bg" aria-hidden="true">
+    <video class="hero-video" muted loop playsinline preload="none" poster="/img/hero-poster.webp"
+      data-src-lg="/video/hero-720.mp4" data-src-sm="/video/hero-480.mp4"></video>
+  </div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">${esc(site.tagline)}</p>

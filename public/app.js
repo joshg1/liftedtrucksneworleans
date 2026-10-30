@@ -37,3 +37,16 @@ document.querySelectorAll(".lead-form").forEach((form) => {
     }
   });
 });
+
+// Hero background video: load only when motion is OK and the visitor isn't saving data.
+const hv = document.querySelector(".hero-video");
+if (hv) {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (!reduce && !saveData) {
+    const small = window.matchMedia("(max-width: 700px)").matches;
+    if (small) hv.poster = "/img/hero-poster-480.webp";
+    hv.src = small ? hv.dataset.srcSm : hv.dataset.srcLg;
+    hv.play().catch(() => {});
+  }
+}

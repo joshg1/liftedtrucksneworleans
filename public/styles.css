@@ -216,8 +216,9 @@ p{margin:0 0 1em}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:35% 50%}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,13,15,.92) 0%,rgba(13,13,15,.72) 45%,rgba(13,13,15,.35) 100%),linear-gradient(0deg,rgba(13,13,15,.7) 0%,transparent 40%)}
 .hero{padding:72px 0 88px}
-@media (max-width:980px){.hero::after{background:rgba(13,13,15,.74)}.hero-bg img{object-position:62% 60%}}
+@media (max-width:980px){.hero::after{background:rgba(13,13,15,.74)}.hero-bg img,.hero-video{object-position:58% 60%}}
 
 .logo img{display:block;height:72px;width:auto}
 .site-footer .logo img{height:72px}
 @media (max-width:620px){.logo img{height:48px}}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;background:#0d0d0f}

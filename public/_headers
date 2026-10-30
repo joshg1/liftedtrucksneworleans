@@ -15,3 +15,6 @@
 
 /app.js
   Cache-Control: public, max-age=300, must-revalidate
+
+/video/*
+  Cache-Control: public, max-age=2592000
