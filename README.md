@@ -25,7 +25,6 @@ Static, SEO/AEO/GEO-optimized lead-generation site for **www.liftedtrucksneworle
 - Page copy: `src/content.mjs` (trucks, areas, FAQs).
 - Templates and structured data: `build.mjs`. Styles: `public/styles.css`.
 - `npm run build` writes the site to `dist/`. `npm run dev` previews locally.
-- `node scripts/make-images.mjs` re-renders the share image and logo (needs Playwright).
 
 ## What's built in for SEO / AEO / GEO
 

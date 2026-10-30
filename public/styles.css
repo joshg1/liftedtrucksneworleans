@@ -42,7 +42,7 @@ p{margin:0 0 1em}
 .topbar a{color:#fff;font-weight:600;text-decoration:none}
 .tb-row{display:flex;justify-content:space-between;gap:16px;padding:8px 20px}
 .site-header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:50;border-bottom:3px solid var(--red)}
-.hdr-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px}
+.hdr-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 20px}
 .logo{display:flex;flex-direction:column;text-decoration:none;color:#fff;line-height:1}
 .logo-mark{font:700 1.7rem/1 var(--display);letter-spacing:.08em;color:#fff}
 .logo-mark::after{content:"";display:block;height:3px;width:100%;background:var(--red);margin:3px 0 4px}
@@ -217,3 +217,7 @@ p{margin:0 0 1em}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,13,15,.92) 0%,rgba(13,13,15,.72) 45%,rgba(13,13,15,.35) 100%),linear-gradient(0deg,rgba(13,13,15,.7) 0%,transparent 40%)}
 .hero{padding:72px 0 88px}
 @media (max-width:980px){.hero::after{background:rgba(13,13,15,.74)}.hero-bg img{object-position:62% 60%}}
+
+.logo img{display:block;height:72px;width:auto}
+.site-footer .logo img{height:72px}
+@media (max-width:620px){.logo img{height:48px}}

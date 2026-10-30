@@ -183,7 +183,7 @@ const header = () => `
   <span><a href="${tel}">${site.phone}</a> · ${site.hours}</span>
 </div></div>
 <header class="site-header"><div class="wrap hdr-row">
-  <a class="logo" href="/" aria-label="${esc(site.name)} home"><span class="logo-mark">LIFTED</span><span class="logo-sub">TRUCKS NEW ORLEANS</span></a>
+  <a class="logo" href="/" aria-label="${esc(site.name)} home"><img src="/img/logo-header.webp" srcset="/img/logo-header.webp 1x, /img/logo-header@2x.webp 2x" width="169" height="80" alt="${esc(site.name)}" fetchpriority="high"></a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav id="nav" class="nav" aria-label="Main">
     <a href="/trucks/">Trucks</a>
@@ -199,7 +199,7 @@ const footer = () => `
 <footer class="site-footer">
   <div class="wrap ft-grid">
     <div>
-      <a class="logo" href="/"><span class="logo-mark">LIFTED</span><span class="logo-sub">TRUCKS NEW ORLEANS</span></a>
+      <a class="logo" href="/" aria-label="${esc(site.name)} home"><img src="/img/logo-header@2x.webp" width="169" height="80" alt="${esc(site.name)}" loading="lazy" decoding="async"></a>
       <p>${esc(site.description)}</p>
       <p><a href="${tel}">${site.phone}</a><br>${site.hours}</p>
     </div>
