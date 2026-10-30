@@ -13,7 +13,13 @@ export const photos = {
   f150Boat: { file: "f150-black-widow-towing-boat", big: 1600, ratio: 1918 / 1078, alt: "Gray Ford F-150 Black Widow lifted truck towing a bass boat" },
   usedRed: { file: "used-f150-black-widow-red", big: 1600, ratio: 1608 / 905, alt: "Pre-owned red Ford F-150 Black Widow lifted truck on grass" },
   ramWhite: { file: "ram-1500-black-widow-white", big: 1169, ratio: 1169 / 658, alt: "White Ram 1500 Black Widow lifted truck with LED light bar" },
-  ramBlack: { file: "ram-1500-black-widow-black", big: 1600, ratio: 1920 / 1080, alt: "Black Ram 1500 Black Widow lifted truck with SCA suspension and mud-terrain tires" }
+  ramBlack: { file: "ram-1500-black-widow-black", big: 1600, ratio: 1920 / 1080, alt: "Black Ram 1500 Black Widow lifted truck with SCA suspension and mud-terrain tires" },
+  f250Silver: { file: "f250-black-widow-silver", big: 1600, ratio: 1920 / 1350, alt: "Silver Ford F-250 Super Duty Black Widow lifted truck with Power Stroke diesel" },
+  f250Driving: { file: "f250-black-widow-driving", big: 1600, ratio: 1920 / 1350, alt: "Gray Ford Super Duty Black Widow lifted truck driving on the highway" },
+  f350Dually: { file: "f350-black-widow-dually", big: 1600, ratio: 2500 / 1667, alt: "Dark gray Ford F-350 Super Duty Black Widow lifted dually truck" },
+  raptorDesert: { file: "f150-raptor-r-desert", big: 1600, ratio: 2560 / 1440, alt: "Lifted Ford F-150 Raptor R with off-road light bar and bronze wheels" },
+  raptorBlack: { file: "f150-raptor-black", big: 1080, ratio: 1080 / 771, alt: "Black Ford F-150 Raptor with long-travel suspension and off-road bumper" },
+  silverado: { file: "silverado-2500hd-lifted", big: 1440, ratio: 1440 / 962, alt: "Gray lifted Chevrolet Silverado 2500HD Z71 with black wheels and all-terrain tires" }
 };
 
 export const trucks = [
@@ -45,6 +51,7 @@ export const trucks = [
   },
   {
     slug: "ford-f-250-black-widow",
+    photo: "f250Silver", pagePhoto: "f250Driving",
     name: "Ford F-250 Black Widow",
     short: "F-250 Black Widow",
     make: "Ford",
@@ -70,6 +77,7 @@ export const trucks = [
   },
   {
     slug: "ford-f-350-black-widow",
+    photo: "f350Dually", pagePhoto: "f350Dually",
     name: "Ford F-350 Black Widow",
     short: "F-350 Black Widow",
     make: "Ford",
@@ -94,6 +102,7 @@ export const trucks = [
   },
   {
     slug: "ford-f-150-raptor-sca",
+    photo: "raptorDesert", pagePhoto: "raptorBlack",
     name: "Ford F-150 Raptor SCA",
     short: "Raptor SCA",
     make: "Ford",
@@ -143,6 +152,7 @@ export const trucks = [
   },
   {
     slug: "lifted-chevy-silverado",
+    photo: "silverado", pagePhoto: "silverado",
     name: "Lifted Chevy Silverado",
     short: "Lifted Silverado",
     make: "Chevrolet",
@@ -227,6 +237,7 @@ export const areas = [
   },
   {
     slug: "kenner",
+    photo: "silverado",
     name: "Kenner",
     parish: "Jefferson Parish",
     title: "Lifted Trucks for Sale in Kenner, LA",
@@ -259,7 +270,7 @@ export const areas = [
   },
   {
     slug: "chalmette",
-    photo: "f150Boat",
+    photo: "f250Silver",
     name: "Chalmette",
     parish: "St. Bernard Parish",
     title: "Lifted Trucks for Sale in Chalmette & St. Bernard Parish",
@@ -275,6 +286,7 @@ export const areas = [
   },
   {
     slug: "slidell",
+    photo: "f250Driving",
     name: "Slidell",
     parish: "St. Tammany Parish",
     title: "Lifted Trucks for Sale in Slidell, LA",
@@ -306,6 +318,7 @@ export const areas = [
   },
   {
     slug: "laplace",
+    photo: "f350Dually",
     name: "LaPlace",
     parish: "St. John the Baptist Parish",
     title: "Lifted Trucks for Sale in LaPlace & the River Parishes",
