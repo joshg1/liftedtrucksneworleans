@@ -257,6 +257,9 @@ ${body}
 </main>
 ${footer()}
 <script src="/app.js?v=${JS_V}" defer></script>
+<!-- Sell-your-car / trade-in widget (trademycar.app) -->
+<div id="sell-car-widget-root" data-dealer-slug="bayou-ford"></div>
+<script src="https://trademycar.app/api/public/widget.js" async></script>
 </body>
 </html>`;
   const file = path.endsWith("/") ? join(OUT, path, "index.html") : join(OUT, path);
