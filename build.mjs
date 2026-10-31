@@ -258,7 +258,7 @@ ${body}
 ${footer()}
 <script src="/app.js?v=${JS_V}" defer></script>
 <!-- Sell-your-car / trade-in widget (trademycar.app) -->
-<div id="sell-car-widget-root" data-dealer-slug="bayou-ford"></div>
+<div id="sell-car-widget-root" data-dealer-slug="bayou-ford" data-button-position="right"></div>
 <script src="https://trademycar.app/api/public/widget.js" async></script>
 </body>
 </html>`;
